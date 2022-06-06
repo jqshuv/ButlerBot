@@ -1,0 +1,26 @@
+# Copyright (c) 2022 Joshua Schmitt
+# 
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+
+### Node.js Files ###
+node_modules
+
+
+### Environment Files ###
+config.json
+config.local.json
+
+
+### Wrong Package Manager Files ###
+**/package-lock.json
+**/pnpm-lock.yaml
+
+### Log Files ###
+logs
+**/**.log
+
+
+### Temp Files ###
+**/___**
