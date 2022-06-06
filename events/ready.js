@@ -4,11 +4,12 @@
 // https://opensource.org/licenses/MIT
 
 let Guilds = [];
+const { Users } = require('../database/dbObjects.js');
 
 module.exports = {
 	name: 'ready',
 	once: true,
-	execute(client) {
+	async execute(client) {
 		const deployer = require('../utils/deploy-commands');
 		const cliArguments = process.argv.slice(2);
 		Guilds = client.guilds.cache.map(guild => guild.id);
@@ -23,7 +24,10 @@ module.exports = {
 			client.user.setStatus('dnd');
 			client.user.setActivity('in development', { type: 'PLAYING' });
 		}
-		
+
+		const storedBalances = await Users.findAll();
+		storedBalances.forEach(b => client.currency.set(b.user_id, b));
+
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 	},
 };
