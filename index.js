@@ -6,40 +6,15 @@
 // Require the necessary discord.js classes
 const { Collection, Client, Intents } = require('discord.js');
 const { token } = require('./config.json');
-const { Users } = require('./database/dbObjects.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const { DiscordTogether } = require('discord-together');
 
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS], partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_VOICE_STATES], partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 client.commands = new Collection();
 client.discordTogether = new DiscordTogether(client);
 client.ghostpingcheck = require('discord.js-ghost-ping');
-client.currency = new Collection();
-
-Reflect.defineProperty(client.currency, 'add', {
-	value: async (id, amount) => {
-		const user = client.currency.get(id);
-
-		if (user) {
-			user.balance += Number(amount);
-			return user.save();
-		}
-
-		const newUser = await Users.create({ user_id: id, balance: amount });
-		client.currency.set(id, newUser);
-
-		return newUser;
-	},
-});
-
-Reflect.defineProperty(client.currency, 'getBalance', {
-	value: id => {
-		const user = client.currency.get(id);
-		return user ? user.balance : 0;
-	},
-});
 
 global.isinvite = require('is-discord-invite');
 global.logger = require('./utils/logger');

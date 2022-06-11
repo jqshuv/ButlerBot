@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 let Guilds = [];
-const { Users } = require('../database/dbObjects.js');
+// const { Users } = require('../database/dbObjects.js');
 
 module.exports = {
 	name: 'ready',
@@ -25,8 +25,8 @@ module.exports = {
 			client.user.setActivity('in development', { type: 'PLAYING' });
 		}
 
-		const storedBalances = await Users.findAll();
-		storedBalances.forEach(b => client.currency.set(b.user_id, b));
+		// const storedBalances = await Users.findAll();
+		// storedBalances.forEach(b => client.currency.set(b.user_id, b));
 
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 	},

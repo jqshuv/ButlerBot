@@ -10,7 +10,6 @@ module.exports = {
 	async execute(message) {
 		console.log(`${message.author.tag} in #${message.channel.name} triggered an interaction.`);
 		logger.fileLogger.info(`${message.author.tag} in #${message.channel.name} sended the message ${message.content.toString()}.`);
-		message.client.currency.add(message.author.id, 1);
 		if (isinvite(message.content.toString()) && !message.member.permissions.has('MANAGE_MESSAGES')) {
 			if (message.author)
 				message.delete()
