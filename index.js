@@ -11,7 +11,7 @@ const path = require('node:path');
 const { DiscordTogether } = require('discord-together');
 
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_VOICE_STATES], partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ], partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 client.commands = new Collection();
 client.discordTogether = new DiscordTogether(client);
 client.ghostpingcheck = require('discord.js-ghost-ping');
