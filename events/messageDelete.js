@@ -6,7 +6,6 @@
 module.exports = {
 	name: 'messageDelete',
 	async execute(message) {
-		console.log(`${message.author.tag} in #${message.channel.name} triggered an interaction.`);
 		message.client.ghostpingcheck.detector('messageDelete', message);
 	},
 };
