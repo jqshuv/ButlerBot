@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 let Guilds = [];
-// const { Users } = require('../database/dbObjects.js');
+const config = require('../config.json');
 
 module.exports = {
 	name: 'ready',
@@ -25,8 +25,17 @@ module.exports = {
 			client.user.setActivity('in development', { type: 'PLAYING' });
 		}
 
-		// const storedBalances = await Users.findAll();
-		// storedBalances.forEach(b => client.currency.set(b.user_id, b));
+		client.manager.registerChannel(config.tempChannel.master, {
+			childCategory: config.tempChannel.category,
+			childAutoDeleteIfEmpty: true,
+			childAutoDeleteIfOwnerLeaves: false,
+			childVoiceFormat: (str) => `「🦖」${str}`,
+			childVoiceFormatRegex: /^Example #\d+ \|/,
+			childTextFormat: (str) => `「🦖」${str}`,
+			childTextFormatRegex: /^example-\d+_/i,
+			textChannelAsThreadParent: config.tempChannel.text,
+			threadArchiveDuration: 60,
+		});
 
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 	},

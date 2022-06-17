@@ -9,12 +9,14 @@ const { token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 const { DiscordTogether } = require('discord-together');
+const { TempChannelsManager, TempChannelsManagerEvents } = require('@hunteroi/discord-temp-channels');
 
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MEMBERS ], partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_VOICE_STATES ], partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 client.commands = new Collection();
 client.discordTogether = new DiscordTogether(client);
 client.ghostpingcheck = require('discord.js-ghost-ping');
+client.manager = new TempChannelsManager(client);
 
 global.isinvite = require('is-discord-invite');
 global.logger = require('./utils/logger');
@@ -43,5 +45,33 @@ for (const file of commandFiles) {
 	// With the key as the command name and the value as the exported module
 	client.commands.set(command.data.name, command);
 }
+
+client.manager.on(
+	TempChannelsManagerEvents.textChannelCreate,
+	(textChannel, interaction) =>
+		interaction && interaction
+			.editReply(
+				`The text channel #${textChannel?.name ?? ''} has been created !`,
+			)
+			.catch((err) => console.error(err)),
+);
+
+client.manager.on(
+	TempChannelsManagerEvents.textChannelDelete,
+	(textChannel, interaction) =>
+		interaction && interaction
+			.editReply(
+				`The text channel #${textChannel?.name ?? ''} has been removed!`,
+			)
+			.catch((err) => console.error(err)),
+);
+
+client.manager.on(
+	TempChannelsManagerEvents.voiceNotExisting,
+	(interaction) =>
+		interaction && interaction
+			.editReply('You must be owner of a temporary voice channel to do that!')
+			.catch((err) => console.error(err)),
+);
 
 client.login(token);

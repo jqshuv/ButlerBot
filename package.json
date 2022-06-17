@@ -12,9 +12,13 @@
     "deploystart": "node . --deploy",
     "lint": "eslint ."
   },
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
     "@discordjs/builders": "^0.14.0",
     "@discordjs/rest": "^0.5.0",
+    "@hunteroi/discord-temp-channels": "^2.1.1",
     "dayjs": "^1.11.2",
     "discord-api-types": "^0.33.3",
     "discord-together": "^1.3.3",
