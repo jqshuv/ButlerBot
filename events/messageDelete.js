@@ -6,6 +6,8 @@
 module.exports = {
 	name: 'messageDelete',
 	async execute(message) {
-		message.client.ghostpingcheck.detector('messageDelete', message);
+		message.client.ghostpingcheck.detector('messageDelete', message, {
+			footer: 'Do not Ghost Ping!',
+		});
 	},
 };

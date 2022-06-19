@@ -7,6 +7,8 @@ module.exports = {
 	name: 'messageUpdate',
 	async execute(oldMessage, newMessage) {
 		// console.log(`${oldMessage.author.tag} in #${oldMessage.channel.name} triggered an interaction.`);
-		newMessage.client.ghostpingcheck.detector('messageUpdate', oldMessage, newMessage);
+		newMessage.client.ghostpingcheck.detector('messageUpdate', oldMessage, newMessage, {
+			footer: 'Do not Ghost Ping!',
+		});
 	},
 };
