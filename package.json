@@ -26,9 +26,7 @@
     "discord.js-ghost-ping": "git+https://github.com/jqshuv/discord.js-ghost-ping.git",
     "is-discord-invite": "^1.0.6",
     "pino": "^8.0.0",
-    "randomstring": "^1.2.2",
-    "sequelize": "^6.20.1",
-    "sqlite3": "^5.0.8"
+    "randomstring": "^1.2.2"
   },
   "devDependencies": {
     "eslint": "^8.17.0"
