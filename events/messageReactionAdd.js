@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-const { MessageEmbed } = require('discord.js');
+const createEmbed = require('../utils/createEmbed');
 
 module.exports = {
 	name: 'messageReactionAdd',
@@ -13,26 +13,7 @@ module.exports = {
 		const message = await reaction.client.channels.cache.get(reaction.message.channelId).messages.fetch(reaction.message.id);
 		const author = await message.guild.members.fetch(await reaction.client.users.cache.get(reaction.message.author.id));
 
-		if (reaction.partial) {
-			try {
-				await reaction.fetch();
-			} catch (error) {
-				console.error('Something went wrong when fetching the message:', error);
-				return;
-			}
-		}
-
-		function createEmbed(title, description, color) {
-			const embed = new MessageEmbed()
-				.setTitle(title)
-				.setDescription(description)
-				.setColor(color)
-				.setTimestamp(Date.now());
-
-			return embed;
-		}
-
-		if (reaction.emoji == banEmoji && reaction.count >= 3) {
+		if (reaction.emoji == banEmoji && reaction.count >= 1) {
 
 			if (author) {
 				try {
@@ -49,8 +30,7 @@ module.exports = {
 
 
 			reaction.message.delete();
-			logChannel.send({ embeds: [createEmbed('Deleted Message due to reactions', 'Message: ' + reaction.message.content + '\n' + 'Channel: ' + reaction.message.channel.name + '\n' + 'Author: ' + reaction.message.author.tag + '\n' + 'Message ID: ' + reaction.message.id, 0x00AE86)] });
-		} else console.log('?');
-
+			logChannel.send({ embeds: [createEmbed('Deleted Message due to reactions', 'Message: ' + reaction.message.content + '\n' + 'Channel: ' + reaction.message.channel.name + '\n' + 'Author: ' + reaction.message.author.tag + '\n' + 'Message ID: ' + reaction.message.id)] });
+		}
 	},
 };

@@ -1,0 +1,6 @@
+[[1m[38;2;99;143;79m5 ms[39m[22m] @microsoft/vscode-dev-containers-cli 0.63.0.
+[[1m[38;2;99;143;79m205 ms[39m[22m] @microsoft/vscode-dev-containers-cli 0.63.0.
+[[1m[38;2;99;143;79m4896 ms[39m[22m] Start: Run in container: # Clone & install dotfiles
+[[1m[38;2;99;143;79m4898 ms[39m[22m] dotfiles marker found
+[[1m[38;2;99;143;79m4899 ms[39m[22m] 
+[[1m[38;2;99;143;79m4900 ms[39m[22m] 

@@ -1,0 +1,65 @@
+{
+  "remoteUser": "codespace",
+  "image": "mcr.microsoft.com/vscode/devcontainers/universal:2",
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt",
+    "seccomp=unconfined",
+    "--privileged",
+    "--init",
+    "--label",
+    "ContainerVersion=12",
+    "--hostname",
+    "codespaces-e32ed0",
+    "--add-host",
+    "codespaces-e32ed0:127.0.0.1",
+    "--cap-add",
+    "sys_nice",
+    "--network",
+    "host"
+  ],
+  "settings": {
+    "go.toolsManagement.checkForUpdates": "local",
+    "go.useLanguageServer": true,
+    "go.gopath": "/go",
+    "python.pythonPath": "/opt/python/latest/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": "true",
+    "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+    "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+    "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+    "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+    "python.linting.flake8Path": "python.linting.flake8Path",
+    "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+    "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+    "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+    "python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
+    "lldb.executable": "/usr/bin/lldb"
+  },
+  "overrideCommand": false,
+  "containerEnv": {
+    "CODESPACES": "true",
+    "RepositoryName": "ButlerBot",
+    "ContainerVersion": "12"
+  },
+  "remoteEnv": {
+    "CLOUDENV_ENVIRONMENT_ID": "4463aec1-3bb1-4b9f-85e2-10f87e78b82c",
+    "CODESPACE_NAME": "jqshuv-butlerbot-gvgwr7j439qqv",
+    "GITHUB_SERVER_URL": "https://github.com",
+    "GITHUB_API_URL": "https://api.github.com",
+    "GITHUB_GRAPHQL_URL": "https://api.github.com/graphql",
+    "GITHUB_REPOSITORY": "jqshuv/ButlerBot",
+    "INTERNAL_VSCS_TARGET_URL": "https://westeurope.online.visualstudio.com",
+    "GITHUB_CODESPACE_TOKEN": "ALPIG5IQWHYLZZ3GJQEJSCLC27QFXANCNFSM4ABSJXQA",
+    "GITHUB_TOKEN": "ghu_CssoX9IHQRkAMF19oeR3mddmvlyeEH1cbT3E",
+    "GITHUB_USER": "jqshuv"
+  },
+  "mounts": [
+    "source=/root/.codespaces/shared,target=/workspaces/.codespaces/shared,type=bind",
+    "source=/var/lib/docker/codespacemount/.persistedshare,target=/workspaces/.codespaces/.persistedshare,type=bind",
+    "source=/.codespaces/agent/mount,target=/.codespaces/bin,type=bind",
+    "source=/mnt/containerTmp,target=/tmp,type=bind"
+  ],
+  "workspaceMount": "type=bind,src=/var/lib/docker/codespacemount/workspace,dst=/workspaces",
+  "workspaceFolder": "/workspaces/ButlerBot"
+}

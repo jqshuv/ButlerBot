@@ -4,7 +4,6 @@
 // https://opensource.org/licenses/MIT
 
 let Guilds = [];
-const config = require('../config.json');
 
 module.exports = {
 	name: 'ready',
@@ -24,18 +23,6 @@ module.exports = {
 			client.user.setStatus('dnd');
 			client.user.setActivity('in development', { type: 'PLAYING' });
 		}
-
-		client.manager.registerChannel(config.tempChannel.master, {
-			childCategory: config.tempChannel.category,
-			childAutoDeleteIfEmpty: true,
-			childAutoDeleteIfOwnerLeaves: false,
-			childVoiceFormat: (str) => `「🦖」${str}`,
-			childVoiceFormatRegex: /^Example #\d+ \|/,
-			childTextFormat: (str) => `「🦖」${str}`,
-			childTextFormatRegex: /^example-\d+_/i,
-			textChannelAsThreadParent: config.tempChannel.text,
-			threadArchiveDuration: 60,
-		});
 
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 	},
